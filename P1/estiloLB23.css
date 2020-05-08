@@ -22,7 +22,9 @@ img {
 h2 {
   color: blue;
 }
-
+li {
+  margin: 3px;
+}
 p {
   color: green;
 }
