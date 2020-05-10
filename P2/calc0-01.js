@@ -8,6 +8,8 @@ igual = document.getElementById("igual")
 clear = document.getElementById("clear")
 
 digito = document.getElementsByClassName("digito")
+operador = document.getElementsByClassName("operador")
+
 // -- Insertar digitos
 for (i=0; i<digito.length; i++) {
   digito[i].onclick = (ev) => {
@@ -15,7 +17,7 @@ for (i=0; i<digito.length; i++) {
   }
 }
 
-//-- Insertar simbolo de sumar
+//-- Insertar operadores
 suma.onclick = (ev) => {
   display.innerHTML += ev.target.value;
 }
