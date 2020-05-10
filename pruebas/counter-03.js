@@ -25,3 +25,6 @@ gui.boton_inc.onclick = () => {
 gui.boton_dec.onclick = () => {
   counter.inc(-1)
 }
+setInterval(()=>{
+  counter.inc(1);
+}, 1000);
