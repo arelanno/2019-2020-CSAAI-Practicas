@@ -1,8 +1,12 @@
 
+@font-face {
+font-family: 'Digital';
+src: url(digital7monoita.ttf);
+}
 body {
   padding: 0px;
   margin-left: 115px;
-  margin-top: 300px;
+  margin-top: 310px;
   border: none;
   background-image: url(calculadoraresizedoff.jpg);
   background-repeat: no-repeat;
@@ -14,14 +18,26 @@ button {
   margin-bottom: 3px;
   width: 50px;
   height: 40px;
-  background-color: rgba(255, 255, 0, 0.5);
+  background-color: rgba(255, 255, 0, 0);
   border: none;
   color: rgba(0, 0, 255, 0);
 }
 
 p{
-  margin-bottom: 107px;
+  margin-bottom: 97px;
+  width: 300px;
+  border: 4px;
+  position: sticky;
+  text-align: right;
+  letter-spacing: 4px;
   border: blue;
   color: blue;
-  font-size: 30px;
+  font-family: 'Digital';
+  font-size: 35px;
+}
+#audioerror{
+display: none
+}
+#audiogeneral{
+display: none
 }

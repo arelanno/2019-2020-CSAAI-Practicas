@@ -7,12 +7,12 @@
     <script src="calc0-01.js" defer></script>
   </head>
   <body>
-    <p id="display">0</p>
+    <p id="display">.</p>
     <button type="button" id="power">pow</button>
     <button type="button" id="del">DEL</button>
-    <button type="button" id="horn1" class="digito">H1</button>
-    <button type="button" id="horn2" class="digito">H2</button>
-    <button type="button" id="horn3" class="digito">H3</button>
+    <button type="button" id="horn1" class="pointless">H1</button>
+    <button type="button" id="horn2" class="pointless">H2</button>
+    <button type="button" id="horn3" class="pointless">H3</button>
     <br>
     <br>
     <button type="button" id="sqrt" value="Math.sqrt">√</button>
@@ -29,7 +29,7 @@
     <button type="button" id="div" value="/" class="operador">/</button>
     <br>
     <br>
-    <button type="button" id="botonpi" value="pi" class="digito">π</button>
+    <button type="button" id="botonpi" value="3.14" class="digito">π</button>
     <button type="button" id="boton1" value="1" class="digito">1</button>
     <button type="button" id="boton2" value="2" class="digito">2</button>
     <button type="button" id="boton3" value="3" class="digito">3</button>
@@ -41,5 +41,9 @@
     <button type="button" id="boton." value="." class="digito">.</button>
     <button type="button" id="igual">=</button>
     <button type="button" id="suma" value="+" class="operador">+</button>
+    <div class="multi">
+      <audio id="audioerror" src="error.mp3"></audio>
+      <audio id="audiogeneral" src="bepgeneral.mp3"></audio>
+    </div>
   </body>
 </html>
