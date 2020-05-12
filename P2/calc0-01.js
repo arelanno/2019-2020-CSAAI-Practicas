@@ -54,7 +54,7 @@ for (i=0; i<operador.length; i++) {
 
 percent.onclick = () => {
   audiogeneral.play();
-  console.log("click en RAIZ");
+  console.log("click en percent");
   if (PW) {
   display.innerHTML = display.innerHTML/100 + "*";
 }}
