@@ -7,6 +7,7 @@ sqrt = document.getElementById("sqrt")
 igual = document.getElementById("igual")
 del = document.getElementById("del")
 clear = document.getElementById("clear")
+percent =document.getElementById("percent")
 power= document.getElementById("power")
 
 digito = document.getElementsByClassName("digito")
@@ -50,6 +51,13 @@ for (i=0; i<operador.length; i++) {
     display.innerHTML += ev.target.value;
   }}
 }
+
+percent.onclick = () => {
+  audiogeneral.play();
+  console.log("click en RAIZ");
+  if (PW) {
+  display.innerHTML = display.innerHTML/100 + "*";
+}}
 
 sqrt.onclick = () => {
   audiogeneral.play();
