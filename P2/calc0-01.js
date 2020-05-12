@@ -63,7 +63,10 @@ sqrt.onclick = () => {
   audiogeneral.play();
   console.log("click en RAIZ");
   if (PW) {
-  display.innerHTML = Math.sqrt(display.innerHTML);
+    try { display.innerHTML = Math.sqrt(display.innerHTML);
+    }catch (e) {
+      display.innerHTML = "SYNTAX ERROR";
+    }
 }}
 
 //-- Borrar ultima cifra
@@ -84,7 +87,10 @@ del.onclick = () => {
 igual.onclick = () => {
   audiogeneral.play();
   if (PW) {
-  display.innerHTML = eval(display.innerHTML);
+    try { display.innerHTML = eval(display.innerHTML);
+    }catch (e) {
+      display.innerHTML = "SYNTAX ERROR";
+    }
 }}
 
 //-- Poner a cero la expresion
@@ -94,6 +100,7 @@ clear.onclick = () => {
   display.innerHTML = "0";
 }}
 
+//botones useless
 for (i=0; i<useless.length; i++) {
   useless[i].onclick = (ev) => {
    if (PW) {
