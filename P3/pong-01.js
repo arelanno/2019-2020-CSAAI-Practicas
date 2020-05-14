@@ -13,7 +13,7 @@ const ctx = canvas.getContext("2d");
 
 //-- Variables para la bola
 let bola_x = 50;
-
+let bola_vx = 0;
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
@@ -64,10 +64,13 @@ function draw() {
 //---- Bucle principal de la animación
 function animacion()
 {
-
+  if (bola_x >= canvas.width) {
+    //-- Hay colisión. Cambiar el signo de la bola
+    bola_vx = bola_vx * -1;
+  }
   //-- Actualizar las posiciones de los objetos móviles
     //-- Actualizar coordenada x de la bola
-    bola_x = Math.random()* (200 - 0) +0;
+    bola_x += bola_vx
 
   //-- Borrar la pantalla
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -82,12 +85,13 @@ setInterval(()=>{
 },16);
 
 //-- Obtener el boton de dar un "paso"
-const reset = document.getElementById("reset");
+const sacar = document.getElementById("sacar");
 
 //-- Botón de dar un Paso: Cada vez que lo apretamos
 //-- la bola avanza 5 píxeles
-reset.onclick = () => {
+sacar.onclick = () => {
   //-- Incrementar la posicion x de la bola
   bola_x = 50;
-  console.log("Paso!");
+  bola_vx = 5;
+  console.log("saque!");
 }
