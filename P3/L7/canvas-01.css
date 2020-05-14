@@ -9,3 +9,14 @@
     border-width: 1px;
     border-color: black;
   }
+
+  /* Imagen deshabilitada
+     Se usa para leerla desde js y
+     meterla en el canvas */
+  #NBA-Logo {
+    display: none;
+    border-width: 3px;
+    border-color: red;
+    border-style: solid;
+
+  }
