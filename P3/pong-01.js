@@ -58,7 +58,7 @@ function draw() {
   ctx.font = "100px Arial";
   ctx.fillStyle = "white";
   ctx.fillText("Holi Jess", 200, 80);
-  ctx.fillText("", 340, 80);
+  ctx.fillText(" ", 340, 80);
 }
 
 //---- Bucle principal de la animación
