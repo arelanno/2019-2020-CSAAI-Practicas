@@ -61,8 +61,8 @@ var objeto = {
   //-- Dibujar el objeto
   draw : function () {
     this.ctx.fillStyle = 'red';
-    this.ctx.fillRect(this.x, this.y, 20, 20)
-    this.ctx.strokeRect(this.x, this.y, 20, 20)
+    this.ctx.fillRect(this.x, this.y, 40, 20)
+    this.ctx.strokeRect(this.x, this.y, 50, 20)
   },
 
   //-- Actualizar la posicion del objeto y redibujar
@@ -113,7 +113,7 @@ var tablero = {
 
   //-- Borrar el tablero
   clear : function () {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctx.clearRect(0, 200, this.canvas.width, this.canvas.height);
   },
 
   //-- Inicializar el tablero
