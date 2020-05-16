@@ -14,8 +14,13 @@ const ctx = canvas.getContext("2d");
 //-- Variables para la bola
 let bola_x = 50;
 let bola_vx = 0;
-let bola_y = 202;
+let bola_y = 200;
 let bola_vy = 0;
+
+//-- Variables para la raqueta izquierda
+let raqI_x = 50;
+let raqI_y = 100;
+let raqI_v = 0;  //-- Velocidad
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
@@ -32,7 +37,7 @@ function draw() {
   ctx.fillStyle='white';
 
   //-- Raqueta izquierda
-  ctx.rect(50, 100, 10, 40);
+  ctx.rect(raqI_x, raqI_y, 10, 40);
 
   //-- Raqueta derecha
   ctx.rect(540, 300, 10, 40);
@@ -80,6 +85,7 @@ function animacion()
     bola_x += bola_vx;
     bola_y += bola_vy;
 
+    raqI_y += raqI_v;
   //-- Borrar la pantalla
   ctx.clearRect(0,0, canvas.width, canvas.height);
 
@@ -92,16 +98,33 @@ setInterval(()=>{
   animacion();
 },16);
 
-//-- Obtener el boton de dar un "paso"
-const sacar = document.getElementById("sacar");
 
-//-- Botón de dar un Paso: Cada vez que lo apretamos
-//-- la bola avanza 5 píxeles
-sacar.onclick = () => {
-  //-- Incrementar la posicion x de la bola
-  bola_x = 50;
-  bola_vx = 4;
-  bola_y = 200;
-  bola_vy = 6;
+//-- Retrollamada de las teclas
+window.onkeydown = (e) => {
+
+  //-- Según la tecla se hace una cosa u otra
+  switch (e.key) {
+    //-- Teclas A Q: mov raqueta izquierda
+    case "a":
+      raqI_v = 3;
+      break;
+    case "q":
+      raqI_v = -3;
+      break;
+    //-- Tecla ESPACIO: Saque
+    case " ":
+      bola_x = 50;
+      bola_vx = 4;
+      bola_y = 200;
+      bola_vy = 6;
   console.log("saque!");
+  }
+}
+
+//-- Retrollamada de la liberacion de teclas
+window.onkeyup = (e) => {
+  if (e.key == "a" || e.key == "q"){
+    //-- Quitar velocidad de la raqueta
+    raqI_v = 0;
+  }
 }
