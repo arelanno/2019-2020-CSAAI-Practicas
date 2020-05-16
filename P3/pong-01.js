@@ -14,6 +14,8 @@ const ctx = canvas.getContext("2d");
 //-- Variables para la bola
 let bola_x = 50;
 let bola_vx = 0;
+let bola_y = 202;
+let bola_vy = 0;
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
@@ -22,7 +24,7 @@ function draw() {
   ctx.fillStyle='white';
 
   //-- x,y, anchura, altura
-  ctx.rect(bola_x, 200, 10, 10);
+  ctx.rect(bola_x, bola_y, 10, 10);
   ctx.fill();
 
   //------- Dibujar las raquetas
@@ -57,20 +59,26 @@ function draw() {
   //------ Dibujar el tanteo
   ctx.font = "100px Arial";
   ctx.fillStyle = "white";
-  ctx.fillText("Holi Jess", 200, 80);
-  ctx.fillText(" ", 340, 80);
+  ctx.fillText("1", 200, 80);
+  ctx.fillText("0", 340, 80);
 }
 
 //---- Bucle principal de la animación
 function animacion()
 {
-  if (bola_x >= canvas.width) {
+  if (bola_x >= canvas.width || bola_x <= 0 ) {
     //-- Hay colisión. Cambiar el signo de la bola
     bola_vx = bola_vx * -1;
   }
+
+  if (bola_y >= canvas.height || bola_y <= 0 ) {
+    //-- Hay colisión. Cambiar el signo de la bola
+    bola_vy = bola_vy * -1;
+  }
   //-- Actualizar las posiciones de los objetos móviles
     //-- Actualizar coordenada x de la bola
-    bola_x += bola_vx
+    bola_x += bola_vx;
+    bola_y += bola_vy;
 
   //-- Borrar la pantalla
   ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -92,6 +100,8 @@ const sacar = document.getElementById("sacar");
 sacar.onclick = () => {
   //-- Incrementar la posicion x de la bola
   bola_x = 50;
-  bola_vx = 5;
+  bola_vx = 4;
+  bola_y = 200;
+  bola_vy = 6;
   console.log("saque!");
 }
