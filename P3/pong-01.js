@@ -80,6 +80,12 @@ function animacion()
     //-- Hay colisión. Cambiar el signo de la bola
     bola_vy = bola_vy * -1;
   }
+
+  //-- Comprobar si hay colisión con la raqueta izquierda
+  if (bola_x >= raqI_x && bola_x <=(raqI_x+10) &&
+      bola_y >= raqI_y && bola_y <=(raqI_y+40)) {
+    bola_vx = bola_vx * -1;
+  }
   //-- Actualizar las posiciones de los objetos móviles
     //-- Actualizar coordenada x de la bola
     bola_x += bola_vx;
