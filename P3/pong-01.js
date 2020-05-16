@@ -11,16 +11,39 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 //-- Obtener el contexto para pintar en el canvas
 const ctx = canvas.getContext("2d");
 
-//-- Variables para la bola
-let bola_x = 50;
-let bola_vx = 0;
-let bola_y = 200;
-let bola_vy = 0;
+/-- Objeto: Bola
+const bola = {
 
-//-- Variables para la raqueta izquierda
-let raqI_x = 50;
-let raqI_y = 100;
-let raqI_v = 0;  //-- Velocidad
+  //-- Constante: Tamaño de la bola
+  size : 5,
+  //-- Contante: Posicion inicial de la bola
+  x_ini : 100,
+  y_ini : 200,
+  //-- Posicion generica de la bola
+  x : 0,
+  y : 0,
+  //-- Velocidad inicial de la bola
+  vx_ini : 6,
+  vy_ini : 3,
+  //-- Velocidad genérica de la bola
+  //-- Inicialmente a cero
+  vx : 0,
+  vy : 0,
+}
+
+//-- Objeto raqueta
+const raqI = {
+  //-- Constante: Tamaño de la raqueta
+  width : 10,
+  height: 40,
+  //-- Constante: Posicion inicial
+  x_ini : 50,
+  y_ini : 100,
+  //-- Constante: Velocidad
+  v_ini : 3,
+  //-- Velocidad (variable)
+  v : 0,
+}
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
