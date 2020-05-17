@@ -11,6 +11,13 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 //-- Obtener el contexto para pintar en el canvas
 const ctx = canvas.getContext("2d");
 
+//
+const puntuacion = {
+
+  pI: 0,
+  pD: 0,
+}
+
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
@@ -21,14 +28,7 @@ function draw() {
   raqI.draw();
 
   //------- Dibujar raqueta derecha
-  ctx.beginPath();
-  ctx.fillStyle='white';
-
-  //-- Raqueta derecha
-  ctx.rect(540, 300, 10, 40);
-
-  //-- Pintar!
-  ctx.fill();
+  raqD.draw();
 
   //--------- Dibujar la red
   ctx.beginPath();
@@ -49,8 +49,8 @@ function draw() {
   //------ Dibujar el tanteo
   ctx.font = "100px Arial";
   ctx.fillStyle = "white";
-  ctx.fillText("1", 200, 80);
-  ctx.fillText("0", 340, 80);
+  ctx.fillText(puntuacion.pI, 200, 80);
+  ctx.fillText(puntuacion.pD, 340, 80);
 }
 
 //---- Bucle principal de la animación
@@ -60,9 +60,19 @@ function animacion()
   raqI.update();
   raqD.update();
 
-  if (bola.x >= canvas.width || bola.x <= 0 ) {
+  if (bola.x >= canvas.width ) {
     //-- Hay colisión. Cambiar el signo de la bola en X
-    bola.vx = bola.vx * -1;
+    bola.vx = 0;
+    bola.vy = 0;
+    bola.init();
+    puntuacion.pI += 1;
+  }
+  if ( bola.x <= 0 ) {
+    //-- Hay colisión. Cambiar el signo de la bola en X
+    bola.vx = 0;
+    bola.vy = 0;
+    bola.init();
+    puntuacion.pD += 1;
   }
 
   if (bola.y >= canvas.height || bola.y <= 0 ) {
@@ -74,6 +84,7 @@ function animacion()
   if (bola.x >= raqI.x && bola.x <=(raqI.x+raqI.width) &&
       bola.y >= raqI.y && bola.y <=(raqI.y+raqI.height)) {
     bola.vx = bola.vx * -1;
+    bola.vy += 0.5 * raqI.v ;
   }
   //-- Actualizar las posiciones de los objetos móviles
     //-- Actualizar coordenada x de la bola
@@ -117,6 +128,12 @@ window.onkeydown = (e) => {
     case "q":
       raqI.v = raqI.v_ini * -1;
       break;
+      case "j":
+         raqD.v = raqI.v_ini;
+        break;
+      case "u":
+        raqD.v = raqI.v_ini * -1;
+        break;
     //-- Tecla ESPACIO: Saque
     case " ":
       bola.init();
@@ -133,4 +150,8 @@ window.onkeyup = (e) => {
     //-- Quitar velocidad de la raqueta
     raqI.v = 0;
   }
+  if (e.key == "j" || e.key == "u"){
+      //-- Quitar velocidad de la raqueta
+      raqD.v = 0;
+    }
 }
