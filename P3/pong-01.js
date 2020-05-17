@@ -16,6 +16,26 @@ const puntuacion = {
 
   pI: 0,
   pD: 0,
+
+}
+
+function puntuar(jugador){
+  switch (jugador) {
+    case "D":
+    bola.vx = 0;
+    bola.vy = 0;
+    bola.init();
+    puntuacion.pD += 1;
+      break;
+      case "I":
+      bola.vx = 0;
+      bola.vy = 0;
+      bola.init();
+      puntuacion.pI += 1;
+        break;
+    default:
+
+  }
 }
 
 //-- Pintar todos los objetos en el canvas
@@ -62,17 +82,11 @@ function animacion()
 
   if (bola.x >= canvas.width ) {
     //-- Hay colisión. Cambiar el signo de la bola en X
-    bola.vx = 0;
-    bola.vy = 0;
-    bola.init();
-    puntuacion.pI += 1;
+    puntuar("D");
   }
   if ( bola.x <= 0 ) {
     //-- Hay colisión. Cambiar el signo de la bola en X
-    bola.vx = 0;
-    bola.vy = 0;
-    bola.init();
-    puntuacion.pD += 1;
+    puntuar("I");
   }
 
   if (bola.y >= canvas.height || bola.y <= 0 ) {
