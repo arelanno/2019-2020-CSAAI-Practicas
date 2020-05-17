@@ -20,16 +20,19 @@ const puntuacion = {
 }
 
 function puntuar(jugador){
+  bola.vx = 0;
+  bola.vy = 0;
+
   switch (jugador) {
     case "D":
-    bola.vx = 0;
-    bola.vy = 0;
-    bola.init();
-    puntuacion.pD += 1;
+      bola.x_ini = 500;
+      bola.vx_ini = -6;
+      bola.init();
+      puntuacion.pD += 1;
       break;
-      case "I":
-      bola.vx = 0;
-      bola.vy = 0;
+    case "I":
+      bola.vx_ini = 6;
+      bola.x_ini = 50;
       bola.init();
       puntuacion.pI += 1;
         break;
