@@ -11,45 +11,6 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 //-- Obtener el contexto para pintar en el canvas
 const ctx = canvas.getContext("2d");
 
-
-//-- Objeto raqueta
-const raqI = {
-  //-- Constante: Tamaño de la raqueta
-  width : 10,
-  height: 50,
-  //-- Constante: Posicion inicial
-  x_ini : 50,
-  y_ini : 100,
-  //-- Constante: Velocidad
-  v_ini : 4,
-  //-- Velocidad (variable)
-  v : 0,
-}
-
-//Funciones de la raqueta
-function raqI_init(){
-  raqI.x = raqI.x_ini;
-  raqI.y = raqI.y_ini;
-}
-
-function raqI_draw()
-{
-  //------- Dibujar las raquetas
-  ctx.beginPath();
-  ctx.fillStyle='white';
-
-  //-- Raqueta izquierda
-  ctx.rect(raqI.x, raqI.y, raqI.width, raqI.height);
-
-  //-- Pintar!
-  ctx.fill();
-}
-
-function raqI_update()
-{
-  raqI.y += raqI.v;
-}
-
 //-- Pintar todos los objetos en el canvas
 function draw() {
 
@@ -57,7 +18,7 @@ function draw() {
   bola.draw();
 
   //-- Dibunar la raqueta izquierda
-  raqI_draw();
+  raqI.draw();
 
   //------- Dibujar raqueta derecha
   ctx.beginPath();
@@ -96,7 +57,8 @@ function draw() {
 function animacion()
 {
   //-- Actualizar la raqueta con la velocidad actual
-  raqI_update();
+  raqI.update();
+  raqD.update();
 
   if (bola.x >= canvas.width || bola.x <= 0 ) {
     //-- Hay colisión. Cambiar el signo de la bola en X
@@ -128,8 +90,14 @@ function animacion()
 const bola = new Bola(ctx);
 bola.init();
 
-//-- Inicializar la raqueta a su posicion inicial
-raqI_init();
+//-- Crear las raquetas
+const raqI = new Raqueta(ctx);
+const raqD = new Raqueta(ctx);
+
+//-- Cambiar las coordenadas de la raqueta derecha
+raqD.x_ini = 540;
+raqD.y_ini = 300;
+raqD.init();
 
 //-- Arrancar la animación
 setInterval(()=>{
