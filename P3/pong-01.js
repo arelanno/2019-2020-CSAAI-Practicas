@@ -11,12 +11,16 @@ console.log(`canvas: Anchura: ${canvas.width}, Altura: ${canvas.height}`);
 //-- Obtener el contexto para pintar en el canvas
 const ctx = canvas.getContext("2d");
 
+//-- Obtener Sonidos
+const sonido_raqueta = new Audio("pong-raqueta.mp3");
+const sonido_rebote = new Audio("pong-rebote.mp3");
+
 //
 const puntuacion = {
 
   pI: 0,
   pD: 0,
-
+  victoria:2,
 }
 
 
@@ -53,6 +57,16 @@ function draw() {
   ctx.fillStyle = "white";
   ctx.fillText(puntuacion.pI, 200, 80);
   ctx.fillText(puntuacion.pD, 340, 80);
+
+  if (puntuacion.pD == puntuacion.victoria) {
+    ctx.font = "80px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("VICTORIA P1", 50, canvas.height/2);
+  }else if (puntuacion.pI == puntuacion.victoria) {
+    ctx.font = "80px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("VICTORIA P2", 50, canvas.height/2);
+   }
 }
 
 //Funcion que registra la puntuacion y la posicion para sacar tras un punto
@@ -65,13 +79,13 @@ function puntuar(jugador){
       bola.x_ini = 500;
       bola.vx_ini = -6;
       bola.init();
-      puntuacion.pD += 1;
+      puntuacion.pI += 1;
       break;
     case "I":
       bola.vx_ini = 6;
       bola.x_ini = 100;
       bola.init();
-      puntuacion.pI += 1;
+      puntuacion.pD += 1;
         break;
     default:
 
@@ -96,6 +110,8 @@ function animacion()
   if (bola.y >= canvas.height || bola.y <= 0 ) {
     //-- Hay colisión. Cambiar el signo de la bola en Y
     bola.vy = bola.vy * -1;
+    sonido_rebote.currentTime = 0;
+    sonido_rebote.play();
   }
 
   //-- Comprobar si hay colisión con la raqueta izquierda
@@ -103,13 +119,19 @@ function animacion()
       bola.y >= raqI.y && bola.y <=(raqI.y+raqI.height)) {
     bola.vx = bola.vx * -1;
     bola.vy += 0.5 * raqI.v ;
+    //-- Reproducir sonido
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play();
   }
 
   //-- Comprobar si hay colisión con la raqueta derecha
   if (bola.x >= raqD.x && bola.x <=(raqD.x+raqD.width) &&
       bola.y >= raqD.y && bola.y <=(raqD.y+raqD.height)) {
     bola.vx = bola.vx * -1;
-    bola.vy += 0.5 * raqI.v ;
+    bola.vy += 0.5 * raqD.v ;
+    //-- Reproducir sonido
+    sonido_raqueta.currentTime = 0;
+    sonido_raqueta.play();
   }
   //-- Actualizar las posiciones de los objetos móviles
     //-- Actualizar coordenada x de la bola
@@ -139,6 +161,7 @@ raqD.init();
 setInterval(()=>{
   animacion();
 },16);
+
 
 
 //-- Retrollamada de las teclas
