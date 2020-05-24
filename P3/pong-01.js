@@ -15,12 +15,22 @@ const ctx = canvas.getContext("2d");
 const sonido_raqueta = new Audio("pong-raqueta.mp3");
 const sonido_rebote = new Audio("pong-rebote.mp3");
 const sonido_tanto = new Audio("pong-tanto.mp3");
+
+//-- Estados del juego
+const ESTADO = {
+  INIT: 0,
+  SAQUE: 1,
+  JUGANDO: 2,
+}
+//-- Variable de estado
+//-- Arrancamos desde el estado inicial
+let estado = ESTADO.INIT;
 //
 const puntuacion = {
 
   pI: 0,
   pD: 0,
-  victoria:2,
+  victoria:3,
 }
 
 
@@ -28,12 +38,13 @@ const puntuacion = {
 function draw() {
 
   //----- Dibujar la Bola
-  bola.draw();
+  //-- Solo en el estado de jugando
+  if (estado == ESTADO.JUGANDO) {
+    bola.draw();
+  }
 
-  //-- Dibunar la raqueta izquierda
+  //-- Dibunar las raquetas
   raqI.draw();
-
-  //------- Dibujar raqueta derecha
   raqD.draw();
 
   //--------- Dibujar la red
@@ -67,6 +78,19 @@ function draw() {
     ctx.fillStyle = "white";
     ctx.fillText("VICTORIA P2", 50, canvas.height/2);
    }
+   //-- Dibujar el texto de sacar
+ if (estado == ESTADO.SAQUE) {
+   ctx.font = "40px Arial";
+   ctx.fillStyle = "yellow";
+   ctx.fillText("Saca!", 30, 350);
+ }
+
+ //-- Dibujar el texto de comenzar
+ if (estado == ESTADO.INIT) {
+   ctx.font = "40px Arial";
+   ctx.fillStyle = "green";
+   ctx.fillText("Pulsa Start!", 30, 350);
+ }
 }
 
 //Funcion que registra la puntuacion y la posicion para sacar tras un punto
@@ -80,17 +104,18 @@ function puntuar(jugador){
     case "D":
       bola.x_ini = 500;
       bola.vx_ini = -6;
-      bola.init();
       puntuacion.pI += 1;
       break;
     case "I":
       bola.vx_ini = 6;
       bola.x_ini = 100;
-      bola.init();
       puntuacion.pD += 1;
         break;
-
   }
+  estado = ESTADO.SAQUE;
+  bola.init();
+  console.log("Tanto!!!!");
+   return;
 }
 //---- Bucle principal de la animación
 function animacion()
@@ -168,6 +193,25 @@ setInterval(()=>{
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
 
+
+    if (e.keyCode == 13){
+    estado = ESTADO.SAQUE;
+    console.log("SAQUE! en intro");
+    canvas.focus();
+  }
+
+  //-- Boton de stop
+    if (e.keyCode == 27){
+    //-- Volver al estado inicial
+    estado = ESTADO.INIT;
+    bola.init();
+    }
+  //-- En el estado inicial no se
+  //-- hace caso de las teclas
+
+  if (estado == ESTADO.INIT)
+    return;
+
   //-- Según la tecla se hace una cosa u otra
   switch (e.key) {
     //-- Teclas A Q: mov raqueta izquierda
@@ -184,12 +228,26 @@ window.onkeydown = (e) => {
         raqD.v = raqI.v_ini * -1;
         break;
     //-- Tecla ESPACIO: Saque
-    case " ":
-      bola.init();
-      //-- Se le da velocidad
-      bola.vx = bola.vx_ini;
-      bola.vy = bola.vy_ini;
-  console.log("saque!");
+      case " ":
+      //-- El saque solo funciona en el estado de SAQUE
+      if (estado == ESTADO.SAQUE) {
+        estado = ESTADO.JUGANDO;
+        //-- Reproducir sonido
+        sonido_raqueta.currentTime = 0;
+        sonido_raqueta.play();
+
+        bola.init();
+        //-- Se le da velocidad
+        bola.vx = bola.vx_ini;
+        bola.vy = bola.vy_ini;
+        return false;
+        console.log("saque!");
+        console.log(ESTADO)
+        //-- Cambiar al estado de jugando!
+
+
+      }
+      default:
   }
 }
 
