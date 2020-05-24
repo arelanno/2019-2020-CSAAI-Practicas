@@ -14,7 +14,7 @@ const ctx = canvas.getContext("2d");
 //-- Obtener Sonidos
 const sonido_raqueta = new Audio("pong-raqueta.mp3");
 const sonido_rebote = new Audio("pong-rebote.mp3");
-
+const sonido_tanto = new Audio("pong-tanto.mp3");
 //
 const puntuacion = {
 
@@ -73,6 +73,8 @@ function draw() {
 function puntuar(jugador){
   bola.vx = 0;
   bola.vy = 0;
+  sonido_tanto.currentTime = 0;
+  sonido_tanto.play();
 
   switch (jugador) {
     case "D":
@@ -87,7 +89,6 @@ function puntuar(jugador){
       bola.init();
       puntuacion.pD += 1;
         break;
-    default:
 
   }
 }
