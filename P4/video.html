@@ -4,19 +4,35 @@
     <meta charset="utf-8">
     <title>VIDEO 01</title>
     <script src="video.js" defer></script>
+    <link rel="stylesheet" href="video.css">
   </head>
   <body>
-    <p>Prueba de vídeo</p>
-    <video loop id="video1"></video>
-    <video loop id="video2"></video>
-    <br>
-    <video loop id="video3"></video>
-    <video loop id="video4"></video>
-    <br>
-    <button id="play1">Ver!</button>
-    <button id="stop1">Parar</button>
-    <br>
-    <button id="play2">Ver!</button>
-    <button id="stop2">Parar</button>
+    <p>Lebron James streaming Chanel</p>
+    <div class="Vprincipal">
+      <video loop autoplay id="videop"></video>
+      <button id="Preview">Preview</button>
+      <br>
+    </div>
+    <div class="videos">
+      <div class="player1">
+        <video loop autoplay muted id="video1"></video>
+        <button id="play1">Ver!</button>
+      </div>
+      <div class="player2">
+        <button id="play2">ver 2</button>
+        <video loop autoplay muted id="video2"></video>
+      </div>
+      <br>
+      <div class="player3">
+        <video loop autoplay muted id="video3"></video>
+        <button id="play3">Ver 3</button>
+      </div>
+      <div class="player4">
+        <button id="play4">ver 4</button>
+        <video loop autoplay muted id="video4"></video>
+      </div>
+      <br>
+    </div>
+
   </body>
 </html>

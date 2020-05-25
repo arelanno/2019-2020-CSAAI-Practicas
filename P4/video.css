@@ -1,0 +1,27 @@
+
+
+.videos{
+  margin:auto;
+  padding: 50px;
+  float:left;
+  align-items: center;
+}
+.Vprincipal{
+    text-align: center;
+}
+.player1{
+  margin:auto;
+  padding: 10px;
+}
+.player2{
+  margin:auto;
+  padding: 10px;
+}
+.player3{
+  margin:auto;
+  padding: 10px;
+}
+.player4{
+  margin:auto;
+  padding: 10px;
+}
