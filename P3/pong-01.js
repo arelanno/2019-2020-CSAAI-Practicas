@@ -22,6 +22,7 @@ const ESTADO = {
   SAQUE: 1,
   JUGANDO: 2,
   FIN: 3,
+  ELEGIR:4,
 }
 //-- Variable de estado
 //-- Arrancamos desde el estado inicial
@@ -72,7 +73,7 @@ function draw() {
   ctx.font = "25px Arial";
   ctx.fillStyle = "red";
   ctx.fillText("P1", 20, 25);
-  ctx.fillText("P2", canvas.width-40, 25);
+  ctx.fillText("P2", canvas.width-50, 25);
 
   if (puntuacion.pD == puntuacion.victoria) {
     ctx.font = "80px Arial";
@@ -85,6 +86,12 @@ function draw() {
     ctx.fillText("VICTORIA P1", 50, canvas.height/2);
     finpartida();
    }
+
+ if (estado == ESTADO.ELEGIR) {
+     ctx.font = "40px Arial";
+     ctx.fillStyle = "green";
+     ctx.fillText("Elige objetivo: Pulsa 3, 5 o 7 ", 30,250);
+}
    //-- Dibujar el texto de sacar
  if (estado == ESTADO.SAQUE) {
    ctx.font = "40px Arial";
@@ -209,10 +216,32 @@ setInterval(()=>{
 window.onkeydown = (e) => {
 
     if (e.keyCode == 13){
-    estado = ESTADO.SAQUE;
+    estado = ESTADO.ELEGIR;
     console.log("SAQUE! en intro");
     canvas.focus();
   }
+
+  //--Elegir putuacion maxima
+  if (estado == ESTADO.ELEGIR) {
+    switch (e.key) {
+      case "3":
+      puntuacion.victoria = 3;
+      estado = ESTADO.SAQUE;
+        break;
+      case "5":
+        puntuacion.victoria = 5;
+        estado = ESTADO.SAQUE;
+          break;
+      case "7":
+        puntuacion.victoria = 7;
+        estado = ESTADO.SAQUE;
+          break;
+      default:
+    //
+    }
+  }
+
+
 
   //-- Boton de stop
     if (e.keyCode == 27){
