@@ -33,6 +33,7 @@ const puntuacion = {
   pI: 0,
   pD: 0,
   victoria:3,
+  textsaca:30,
 }
 
 
@@ -96,7 +97,7 @@ function draw() {
  if (estado == ESTADO.SAQUE) {
    ctx.font = "40px Arial";
    ctx.fillStyle = "yellow";
-   ctx.fillText("Saca!", 30, 350);
+   ctx.fillText("Saca!", puntuacion.textsaca, 350);
  }
 
  //-- Dibujar el texto de comenzar
@@ -127,11 +128,13 @@ function puntuar(jugador){
       bola.x_ini = 500;
       bola.vx_ini = -6;
       puntuacion.pI += 1;
+      puntuacion.textsaca = 460;
       break;
     case "I":
       bola.vx_ini = 6;
       bola.x_ini = 100;
       puntuacion.pD += 1;
+      puntuacion.textsaca = 30;
         break;
   }
   estado = ESTADO.SAQUE;
@@ -215,7 +218,7 @@ setInterval(()=>{
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
 
-    if (e.keyCode == 13){
+    if (e.keyCode == 13 & estado == ESTADO.INIT){
     estado = ESTADO.ELEGIR;
     console.log("SAQUE! en intro");
     canvas.focus();
