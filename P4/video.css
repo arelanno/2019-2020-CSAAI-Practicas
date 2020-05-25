@@ -1,27 +1,34 @@
-
-
-.videos{
-  margin:auto;
-  padding: 50px;
-  float:left;
-  align-items: center;
+body{
+  background-color: #4E4D4F;
 }
+
 .Vprincipal{
     text-align: center;
+}
+#videop{
+  border: #BC23EB 4px solid;
+}
+.videos{
+  margin:50px;
+  padding: auto;
+  text-align: center;
+  border: #BC23EB 4px solid;
 }
 .player1{
   margin:auto;
   padding: 10px;
+  text-align: center;
 }
 .player2{
   margin:auto;
   padding: 10px;
+  text-align: center;
 }
-.player3{
-  margin:auto;
-  padding: 10px;
-}
-.player4{
-  margin:auto;
-  padding: 10px;
+
+button{
+  padding: 15px 32px;
+  font-size: 20px;
+  margin: 5px;
+  border-width: 3px;
+  border-color: white;
 }
