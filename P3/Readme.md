@@ -10,3 +10,4 @@ Mejoras:
 -La velocidad de la raqueta influye en la velocidad de la bola
 -Se usa solo el teclado
 -Cuando alguien gana se indica quien ha ganado y se pausa la partida (pero se pueden mover las raquetas)
+-No se puede sacar si se esta disputando un punto, si se ha acabado la partida o en cualquier otro momento que no sea el de sacar
