@@ -21,6 +21,7 @@ const ESTADO = {
   INIT: 0,
   SAQUE: 1,
   JUGANDO: 2,
+  FIN: 3,
 }
 //-- Variable de estado
 //-- Arrancamos desde el estado inicial
@@ -68,15 +69,21 @@ function draw() {
   ctx.fillStyle = "white";
   ctx.fillText(puntuacion.pI, 200, 80);
   ctx.fillText(puntuacion.pD, 340, 80);
+  ctx.font = "25px Arial";
+  ctx.fillStyle = "red";
+  ctx.fillText("P1", 20, 25);
+  ctx.fillText("P2", canvas.width-40, 25);
 
   if (puntuacion.pD == puntuacion.victoria) {
     ctx.font = "80px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText("VICTORIA P1", 50, canvas.height/2);
+    ctx.fillText("VICTORIA P2", 50, canvas.height/2);
+    finpartida();
   }else if (puntuacion.pI == puntuacion.victoria) {
     ctx.font = "80px Arial";
     ctx.fillStyle = "white";
-    ctx.fillText("VICTORIA P2", 50, canvas.height/2);
+    ctx.fillText("VICTORIA P1", 50, canvas.height/2);
+    finpartida();
    }
    //-- Dibujar el texto de sacar
  if (estado == ESTADO.SAQUE) {
@@ -89,8 +96,16 @@ function draw() {
  if (estado == ESTADO.INIT) {
    ctx.font = "40px Arial";
    ctx.fillStyle = "green";
-   ctx.fillText("Pulsa Start!", 30, 350);
+   ctx.fillText("Pulsa intro para empezar!", 30, 350);
  }
+}
+
+function finpartida() {
+  bola.init();
+  estado = ESTADO.FIN;
+  ctx.font = "40px Arial";
+  ctx.fillStyle = "green";
+  ctx.fillText("Pulsa Esc para volver a jugar!", 30, 300);
 }
 
 //Funcion que registra la puntuacion y la posicion para sacar tras un punto
@@ -193,7 +208,6 @@ setInterval(()=>{
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
 
-
     if (e.keyCode == 13){
     estado = ESTADO.SAQUE;
     console.log("SAQUE! en intro");
@@ -203,8 +217,11 @@ window.onkeydown = (e) => {
   //-- Boton de stop
     if (e.keyCode == 27){
     //-- Volver al estado inicial
-    estado = ESTADO.INIT;
+    puntuacion.pI = 0;
+    puntuacion.pD = 0;
     bola.init();
+    estado = ESTADO.INIT;
+
     }
   //-- En el estado inicial no se
   //-- hace caso de las teclas
@@ -231,7 +248,7 @@ window.onkeydown = (e) => {
       case " ":
       //-- El saque solo funciona en el estado de SAQUE
       if (estado == ESTADO.SAQUE) {
-        estado = ESTADO.JUGANDO;
+
         //-- Reproducir sonido
         sonido_raqueta.currentTime = 0;
         sonido_raqueta.play();
@@ -240,12 +257,13 @@ window.onkeydown = (e) => {
         //-- Se le da velocidad
         bola.vx = bola.vx_ini;
         bola.vy = bola.vy_ini;
-        return false;
+
         console.log("saque!");
-        console.log(ESTADO)
+        console.log(estado)
         //-- Cambiar al estado de jugando!
+        estado = ESTADO.JUGANDO;
 
-
+        return false;
       }
       default:
   }
