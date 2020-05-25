@@ -34,12 +34,12 @@ const stop2 = document.getElementById("stop2")
 //-- Función de retrollamada del botón de ver
 play1.onclick = () => {
   console.log("Click!");
-  video1.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente1.mp4"
+  video1.src="https://github.com/arelanno/videos-p4/raw/master/lebron1.mp4"
   video1.play();
 };
 play2.onclick = () => {
   console.log("Click!");
-  video2.src="https://gsyc.urjc.es/jmplaza/csaai/realizador-fuente1.mp4"
+  video2.src="https://github.com/arelanno/videos-p4/raw/master/lebron2.mp4"
   video2.play();
 };
 
