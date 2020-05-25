@@ -56,36 +56,37 @@ play1.onclick = () => {
 
 play2.onclick = () => {
   console.log("Click!");
-videop.src=video2.src;
-video1.style.border = "none";
-video2.style.border = "yellow 4px solid";
-video3.style.border = "none";
-video4.style.border = "none";
+  videop.src=video2.src;
+  video1.style.border = "none";
+  video2.style.border = "yellow 4px solid";
+  video3.style.border = "none";
+  video4.style.border = "none";
 };
 
 play3.onclick = () => {
   console.log("Click!");
-videop.src=video3.src;
-video1.style.border = "none";
-video2.style.border = "none";
-video3.style.border = "yellow 4px solid";
-video4.style.border = "none";
+  videop.src=video3.src;
+  video1.style.border = "none";
+  video2.style.border = "none";
+  video3.style.border = "yellow 4px solid";
+  video4.style.border = "none";
 };
 
 play4.onclick = () => {
   console.log("Click!");
-videop.src=video4.src;
-video1.style.border = "none";
-video2.style.border = "none";
-video3.style.border = "none";
-video4.style.border = "yellow 4px solid";
+  videop.src=video4.src;
+  video1.style.border = "none";
+  video2.style.border = "none";
+  video3.style.border = "none";
+  video4.style.border = "yellow 4px solid";
 };
 
 prueba.onclick = () => {
   console.log("Click!");
-videop.poster=logo.src;
-video1.style.border = "none";
-video2.style.border = "none";
-video3.style.border = "none";
-video4.style.border = "none";
+  videop.src = logo.src;
+  videop.poster=logo.src;
+  video1.style.border = "none";
+  video2.style.border = "none";
+  video3.style.border = "none";
+  video4.style.border = "none";
 };
