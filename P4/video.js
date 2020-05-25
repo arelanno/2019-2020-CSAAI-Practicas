@@ -2,7 +2,7 @@ console.log("Ejecutando JS...");
 
 const videop = document.getElementById("videop")
 videop.width=700;  //-- Tamaño de la pantalla de video
-
+videop.poster="https://github.com/arelanno/videos-p4/raw/master/lebron-intro.mp4"
 
 Preview.onclick = () => {
   videop.src="https://github.com/arelanno/videos-p4/raw/master/lebron-intro.mp4"
@@ -40,6 +40,9 @@ const play1 = document.getElementById("play1")
 const play2 = document.getElementById("play2")
 const play3 = document.getElementById("play3")
 const stop4 = document.getElementById("play4")
+const prueba = document.getElementById("prueba")
+var logo = new Image();
+logo.src = 'logopruebas.jpg';
 
 //-- Función de retrollamada del botón de ver
 play1.onclick = () => {
@@ -76,4 +79,13 @@ video1.style.border = "none";
 video2.style.border = "none";
 video3.style.border = "none";
 video4.style.border = "yellow 4px solid";
+};
+
+prueba.onclick = () => {
+  console.log("Click!");
+videop.poster=logo.src;
+video1.style.border = "none";
+video2.style.border = "none";
+video3.style.border = "none";
+video4.style.border = "none";
 };
