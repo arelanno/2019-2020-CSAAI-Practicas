@@ -22,11 +22,11 @@ power.onclick = () => {
   audiogeneral.play();
   if (PW == false) {
     PW = true;
-    document.body.style.backgroundImage = "url('calculadoraresizedON.jpg')";
+    power.style.backgroundImage = "url('botonon.jpg')";
         display.innerHTML = "0";
   }else{
     PW = false;
-    document.body.style.backgroundImage = "url('calculadoraresizedOFF.jpg')";
+    power.style.backgroundImage = "url('botonoff.jpg')";
       display.innerHTML = ".";
   }
 }
